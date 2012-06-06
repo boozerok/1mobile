@@ -1,3 +1,4 @@
+@import url(http://fonts.googleapis.com/css?family=Black+Ops+One);
 /*
 -reset-.................................................-*/
 html,body,div,span,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,cite,code,em,font,strong,sub,sup,ol,ul,li,fieldset,form,label,table,tr,th,td{margin:0;padding:0;outline:0;border:0;vertical-align:baseline;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;}
@@ -19,6 +20,125 @@ input,textarea,select{color:#444;font:12px Arial,Helvetica,sans-serif;}
 input[type="button"],input[type="submit"]{cursor:pointer;}
 strong{font-weight:bold;}
 em{font-style:italic;}
+.b-clear{display:block;clear:both;content:'.';height:0;visibility:hidden;}
+
+body {
+	background:url('../img/46original.gif');
+	color:#333;
+}
+.p-wrap {
+	min-width:240px;
+	max-width:1200px;
+	margin:0 auto;
+}
+.p-head {
+	margin:0 0 30px;
+	border-bottom:5px solid #888;
+	-webkit-border-radius:0 0 24px 24px;
+	-moz-border-radius:0 0 24px 24px;
+	border-radius:0 0 24px 24px;
+	background:#fff;
+}
+.p-head__title {
+	font:normal 70px/85px 'Black Ops One';
+	margin:0 0 0 20px;
+}
+.p-tape {
+	height:400px;
+	background:#fff;
+}
+
+.b-count {
+	display:inline-block;
+}
+
+/* jQuery Countdown styles 1.5.11. */
+.hasCountdown {
+	border: 1px solid #ccc;
+	background-color: #eee;
+}
+.countdown_rtl {
+	direction: rtl;
+}
+.countdown_holding span {
+	background-color: #ccc;
+}
+.countdown_row {
+	clear: both;
+	width: 100%;
+	padding: 0px 2px;
+	text-align: center;
+}
+.countdown_show1 .countdown_section {
+	width: 98%;
+}
+.countdown_show2 .countdown_section {
+	width: 48%;
+}
+.countdown_show3 .countdown_section {
+	width: 32.5%;
+}
+.countdown_show4 .countdown_section {
+	width: 24.5%;
+}
+.countdown_show5 .countdown_section {
+	width: 19.5%;
+}
+.countdown_show6 .countdown_section {
+	width: 16.25%;
+}
+.countdown_show7 .countdown_section {
+	width: 14%;
+}
+.countdown_section {
+	display: block;
+	float: left;
+	font-size: 75%;
+	text-align: center;
+}
+.countdown_amount {
+	font-size: 200%;
+}
+.countdown_descr {
+	display: block;
+	width: 100%;
+}
+
 
 /*
 -bones-................................................-*/
+/*
+.bk_blank {
+	width:100%;
+	height:478px;
+	background:transparent;
+	text-align:center;
+	z-index:2;
+}
+.img_1 {
+	height:1600px;
+	width:100%;
+	background: transparent url('http://webdesignshock.com/demos/vertical_parallax/img/img_1.png') no-repeat  fixed 50% 400px;
+}
+.img_2 {
+	height:1600px;
+	width:100%;
+	background:transparent url('http://webdesignshock.com/demos/vertical_parallax/img/img_2.png') no-repeat fixed 50% 400px;
+}
+.bk {
+	width:100%;
+	height:1600px;
+}
+.title_1 {
+	background:url('http://webdesignshock.com/demos/vertical_parallax/img/title_a.jpg') 0 0 no-repeat;
+}
+.title_2 {
+	background:url('http://webdesignshock.com/demos/vertical_parallax/img/title_b.jpg') 0 0 no-repeat  ;
+}
+
+.bk_0 {
+	background:url('http://webdesignshock.com/demos/vertical_parallax/img/bk_1.jpg') 0 0 no-repeat fixed ;
+}
+.bk_1 {
+	background:url('http://webdesignshock.com/demos/vertical_parallax/img/bk_2.jpg') 0 0  no-repeat fixed ;
+}*/

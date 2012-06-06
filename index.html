@@ -6,24 +6,113 @@
 	<title>1mobile</title>
 	<link rel="stylesheet" media="screen" href="data/css/spl.css">
 	<script src="data/js/jquery-1.7.2.min.js"></script>
+	<script src="data/js/jquery.countdown.min.js"></script>
+	<script src="data/js/jquery.countdown-ru.js"></script>
 	<!--[if lt IE 9]>
 		<script src="data/js/html5.js"></script>
 		<script src="data/js/css3-mediaqueries.js"></script>
 	<![endif]-->
 </head>
 <body>
+
 <div class="p-wrap">
-	<header class="p-head"></header>
+	<header class="p-head">
+		<h1 class="p-head__title">1mobile</h1>
+	</header>
 	<div class="p-tape">
-		<article class="b-teaser">
-			<header class="b-teaser__head">
-				<time class="b-teaser__head__date">14:20, 14 февраля 2012</time>
-				<div class="b-teaser__head__title">Адаптивный и мобильный дизайн с CSS3 Media Queries</div>
-			</header>
-			<div class="b-teaser__text">Обратите внимание, что в демо используется HTML5. Internet Explorer ниже 9-й версии не поддерживает новые элементы содержащиеся в HTML5, такие как и прочие. Поэтому подключаем Javascript файл html5.js в HTML документ, который позволит IE понимать новые элементы.</div>
-		</article>
+		<div class="b-count js-counter"></div>
+		<!--
+		<div class="bk bk_0">
+			<div class="img_1"></div>
+		</div>
+
+		<div class="bk_blank title_1"></div>
+
+		<div class="bk bk_1">
+			<div class="img_2"></div>
+		</div>
+
+		<div class="bk_blank title_2"></div>
+		-->
 	</div>
 	<footer class="p-foot"></footer>
 </div>
+
+
+
+<script>
+$('.js-counter').countdown({until: new Date(2012, 9-1, 7)});
+
+jQuery(document).ready(function($) {
+	a=parseFloat(400);// Initial value for the first background (bk 0)
+	b=parseFloat(0);// Initial value for the first background (bk 0)
+	c=parseFloat(400);// Initial value for the second background (bk 1)
+	d=parseFloat(0);// Initial value for the second background (bk 1)
+	var scrollTop = $(window).scrollTop();
+	var scroll_actually= new Array();// Identifies the X and Y values for the background
+
+	$(window).scroll(function(){//This is not the cleanest way to do this, I'm just keeping it short.
+		if(scrollTop>$(this).scrollTop()) { // Scroll up
+			if (getScrollTop()<=1600 && getScrollTop()>=0) {// Identifies the position for the first background when a scroll event occurs
+					a=a+35;// Position for the first background, it decreases in 35 pixels
+					b=b+10;// Position for the first background, it decreases in 10 pixels
+					$('.img_1').css('backgroundPosition', '50% '+a+'px');
+					$('.bk_0').css('backgroundPosition', '0 '+b+'px');
+			}
+			if (getScrollTop()>=2050 && getScrollTop()<=3650) {
+					c=c+35;// Position for the second background, it decreases in 35 pixels
+					d=d+10;// Position for the second background, it decreases in 10 pixels
+					$('.img_2').css('backgroundPosition', '50% '+c+'px');
+					$('.bk_1').css('backgroundPosition', '0 '+d+'px');
+			}
+		}
+		else { // Scroll down
+			if (getScrollTop()>=0 && getScrollTop()<=1600) {
+				a=a-35;// Position for the first background, it decreases in 35 pixels
+				b=b-10;// Position for the first background, it decreases in 10 pixels
+				$('.img_1').css('backgroundPosition', '50% '+a+'px');
+				$('.bk_0').css('backgroundPosition', '0 '+b+'px');
+			}
+			if (getScrollTop()>=2050 && getScrollTop()<=3650) {
+				c=c-35;// Position for the second background, it decreases in 35 pixels
+				d=d-10;// Position for the second background, it decreases in 10 pixels
+				$('.img_2').css('backgroundPosition', '50% '+c+'px');
+				$('.bk_1').css('backgroundPosition', '0 '+d+'px');
+			}
+		}
+		if (getScrollTop()==0) { // Adjusts the positions values and resets them to zero during a scroll up event
+			a=parseFloat(400);
+			b=parseFloat(0);
+			c=parseFloat(400);
+			d=parseFloat(0);
+			$('.bk_0').css('backgroundPosition', '0 0');
+			$('.bk_1').css('backgroundPosition', '0 0');
+			$('.img_2').css('backgroundPosition', '50% '+400+'px');
+			$('.img_1').css('backgroundPosition', '50% '+400+'px');
+		}
+		scrollTop = $(this).scrollTop();
+	});
+});
+function getScrollTop(){ //  Verifies the total sum in pixels of the whole page
+
+	if(typeof pageYOffset!= 'undefined'){
+		// Most browsers
+		return pageYOffset;
+	}
+	else{
+		var B= document.body; //IE 'quirks'
+		var D= document.documentElement; //IE with doctype
+		D= (D.clientHeight)? D: B;
+		return D.scrollTop;
+	}
+}
+</script>
+
+
+
+
+
+
+
 </body>
 </html>
