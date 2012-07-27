@@ -17,42 +17,64 @@
 	<header class="p-head">
 		<h1 class="p-head__title">1mobile</h1>
 	</header>
+
 	<div class="p-tape">
-		<!--
-		<div class="b-event b-clear">
-			<div class="b-event__head">
-				<span class="b-event__date">10.06.</span>
-				<span class="b-event__type">Формула 1</span>
+
+		<article class="b-event">
+
+			<header class="b-event__head">
+				<div class="b-event__date">27 июля</div>
+				<h2 class="b-event__title"><a href="#" class="b-event__title__link">Трата денег: бизнес по-русски</a></h2>
+			</header>
+			<a href="#">неактивная ссылка</a>
+
+			<!--
+			<div class="b-event__photos b-clear js-parallax-box">
+				<div class="b-event__photos__main">
+					<img src="http://f1news-st.cdn.ngenix.net/gallery/d/495072-4/2218137_1200px.jpg" alt="" class="b-event__photos__pic">
+					<img src="http://f1news-st.cdn.ngenix.net/gallery/d/495072-4/2218137_1200px.jpg" alt="" class="b-event__photos__pic">
+				</div>
+				<div class="b-event__photos__secondary">
+					<img src="http://f1news-st.cdn.ngenix.net/gallery/d/495140-4/2218361_1200px.jpg" alt="" class="b-event__photos__pic b-event__photos__pic_secondary b-event__photos__pic_secondary_1">
+					<img src="http://f1news-st.cdn.ngenix.net/gallery/d/495144-4/2218377_1200px.jpg" alt="" class="b-event__photos__pic b-event__photos__pic_secondary b-event__photos__pic_secondary_2">
+					<img src="http://f1news-st.cdn.ngenix.net/gallery/d/495144-4/2218377_1200px.jpg" alt="" class="b-event__photos__pic b-event__photos__pic_secondary b-event__photos__pic_secondary_3">
+				</div>
 			</div>
-			<h2 class="b-event__title">Гран При Канады</h2>
-			<div class="b-event__text"></div>
-			<div class="b-event__photos js-parallax-box">
-				<img src="http://f1news-st.cdn.ngenix.net/gallery/d/495072-4/2218137_1200px.jpg" alt="" class="b-event__photos__item b-event__photos__item_1">
-				<img src="http://f1news-st.cdn.ngenix.net/gallery/d/495140-4/2218361_1200px.jpg" alt="" class="b-event__photos__item b-event__photos__item_2">
-				<img src="http://f1news-st.cdn.ngenix.net/gallery/d/495144-4/2218377_1200px.jpg" alt="" class="b-event__photos__item b-event__photos__item_3">
-			</div>
-			<div class="b-event__photos js-parallax-box-min">
-				<img src="http://f1news-st.cdn.ngenix.net/gallery/d/495072-4/2218137_1200px.jpg" alt="" class="b-event__photos__item b-event__photos__item_min b-event__photos__item_1">
-				<img src="http://f1news-st.cdn.ngenix.net/gallery/d/495140-4/2218361_1200px.jpg" alt="" class="b-event__photos__item b-event__photos__item_min b-event__photos__item_2">
-				<img src="http://f1news-st.cdn.ngenix.net/gallery/d/495144-4/2218377_1200px.jpg" alt="" class="b-event__photos__item b-event__photos__item_min b-event__photos__item_3">
-			</div>
-		</div>
-		-->
+			-->
+
+		</article>
 
 	</div>
-	<footer class="p-foot"></footer>
+	<footer class="p-foot">
+		&copy; 2012
+	</footer>
 </div>
 <script>
-$(window).bind('scroll',function(e){
-	//parallaxScroll();
-});
 
 function parallaxScroll(){
 	var scrolled = $(window).scrollTop();
-	$('.js-parallax-box').css('top',(350-(scrolled*.88))+'px');
-	$('.js-parallax-box-min').css('top',(350-(scrolled*.5))+'px');
+	$('.b-event__photos__main').css('top',(scrolled*0.55)+'px');
+	$('.b-event__photos__secondary').css('top',(scrolled*0.33)+'px');
 }
+function windowHeight() {
+	var $winH = $(window).height(),
+		$photoBox = $('.js-parallax-box'),
+		$photoBoxPos = $photoBox.offset();
+	var $photoBoxH = ($winH - $photoBoxPos.top);
+	console.log('photo:' + $photoBoxPos.top);
+	console.log('window:' + $winH);
+	console.log('parallax:' + $photoBoxH);
+	$photoBox.css('height', $photoBoxH + 'px');
+}
+$(function(){
+	//windowHeight();
+})
+$(window).bind('resize', function(e){
+	//windowHeight();
+});
+$(window).bind('scroll', function(e){
+	parallaxScroll();
+});
 </script>
-
 </body>
 </html>
