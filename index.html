@@ -1,80 +1,15 @@
 <!DOCTYPE html>
-<html lang="ru-RU">
+<html>
 <head>
-	<meta charset="utf-8" />
+	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="IE=edge">
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no">
 	<title>1mobile</title>
-	<link rel="stylesheet" media="screen" href="data/css/spl.css">
-	<script src="data/js/jquery-1.7.2.min.js"></script>
-	<!--[if lt IE 9]>
-		<script src="data/js/html5.js"></script>
-		<script src="data/js/respond.min.js"></script>
-	<![endif]-->
+	<link rel="stylesheet" media="screen" href="data/css/map.css">
+	<script src="https://maps.google.com/maps/api/js?sensor=false"></script>
+	<script src="data/js/map.js"></script>
 </head>
-<body>
-
-<div class="p-wrap">
-	<header class="p-head">
-		<h1 class="p-head__title">1mobile</h1>
-	</header>
-
-	<div class="p-tape">
-
-		<article class="b-event">
-
-			<header class="b-event__head">
-				<div class="b-event__date">27 июля</div>
-				<h2 class="b-event__title"><a href="#" class="b-event__title__link">Трата денег: бизнес по-русски</a></h2>
-			</header>
-			<a href="#">неактивная ссылка</a>
-
-			<!--
-			<div class="b-event__photos b-clear js-parallax-box">
-				<div class="b-event__photos__main">
-					<img src="http://f1news-st.cdn.ngenix.net/gallery/d/495072-4/2218137_1200px.jpg" alt="" class="b-event__photos__pic">
-					<img src="http://f1news-st.cdn.ngenix.net/gallery/d/495072-4/2218137_1200px.jpg" alt="" class="b-event__photos__pic">
-				</div>
-				<div class="b-event__photos__secondary">
-					<img src="http://f1news-st.cdn.ngenix.net/gallery/d/495140-4/2218361_1200px.jpg" alt="" class="b-event__photos__pic b-event__photos__pic_secondary b-event__photos__pic_secondary_1">
-					<img src="http://f1news-st.cdn.ngenix.net/gallery/d/495144-4/2218377_1200px.jpg" alt="" class="b-event__photos__pic b-event__photos__pic_secondary b-event__photos__pic_secondary_2">
-					<img src="http://f1news-st.cdn.ngenix.net/gallery/d/495144-4/2218377_1200px.jpg" alt="" class="b-event__photos__pic b-event__photos__pic_secondary b-event__photos__pic_secondary_3">
-				</div>
-			</div>
-			-->
-
-		</article>
-
-	</div>
-	<footer class="p-foot">
-		&copy; 2012
-	</footer>
-</div>
-<script>
-
-function parallaxScroll(){
-	var scrolled = $(window).scrollTop();
-	$('.b-event__photos__main').css('top',(scrolled*0.55)+'px');
-	$('.b-event__photos__secondary').css('top',(scrolled*0.33)+'px');
-}
-function windowHeight() {
-	var $winH = $(window).height(),
-		$photoBox = $('.js-parallax-box'),
-		$photoBoxPos = $photoBox.offset();
-	var $photoBoxH = ($winH - $photoBoxPos.top);
-	console.log('photo:' + $photoBoxPos.top);
-	console.log('window:' + $winH);
-	console.log('parallax:' + $photoBoxH);
-	$photoBox.css('height', $photoBoxH + 'px');
-}
-$(function(){
-	//windowHeight();
-})
-$(window).bind('resize', function(e){
-	//windowHeight();
-});
-$(window).bind('scroll', function(e){
-	parallaxScroll();
-});
-</script>
+<body onload="initialize()">
+	<div class="p-map" id="p-map"></div>
 </body>
 </html>
