@@ -1,0 +1,19 @@
+.p-wrap {
+	min-width:240px;
+	max-width:1200px;
+	margin:0 auto;
+}
+.p-head {
+	padding:8px 8px 15px;
+}
+.p-tape {
+	overflow:hidden;
+	min-height:600px;
+	box-shadow:0 0px 4px rgba(88,88,88,0.5), inset 0 -1px 0 rgba(150,150,150,0.6);
+	background:#fff;
+}
+.p-foot {
+	font-size:11px Tahoma;
+	padding:15px 0;
+	color:#555;
+}

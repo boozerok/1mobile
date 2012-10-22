@@ -1,0 +1,11 @@
+.b-nav {
+	position:relative;
+	width:100%;
+}
+.b-nav__item {
+	font-size:16px;
+	display:inline-block;
+	width:33%;
+	list-style:none;
+	vertical-align:top;
+}
