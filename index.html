@@ -8,6 +8,11 @@
 	<link rel="stylesheet" media="all" href="data/css/all.css">
 	<link rel="stylesheet" media="all" href="data/css/media.css">
 	<script src="data/js/jquery-1.8.2.min.js"></script>
+	<script src="data/js/common.js"></script>
+	<!--[if lt IE 9]>
+		<script src="data/js/html5.js"></script>
+		<script src="data/js/respond.min.js"></script>
+	<![endif]-->
 </head>
 <body>
 
@@ -16,74 +21,104 @@
 		<ul class="b-nav b-clear">
 			<li class="b-nav__item b-nav__item_title">Races</li>
 			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link">Albert Park</a>
+				<a href="#" class="b-nav__item__link js-race-link" data-name="albert-park">Albert Park</a>
 			</li>
 			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link">Sepang</a>
+				<a href="#" class="b-nav__item__link js-race-link" data-name="sepang">Sepang</a>
 			</li>
 			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link">Shanghai</a>
+				<a href="#" class="b-nav__item__link js-race-link" data-name="shanghai">Shanghai</a>
 			</li>
 			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link">Bahrain</a>
+				<a href="#" class="b-nav__item__link js-race-link" data-name="bahrain">Bahrain</a>
 			</li>
 			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link">Barcelona</a>
+				<a href="#" class="b-nav__item__link js-race-link" data-name="barcelona">Barcelona</a>
 			</li>
 			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link">Monte-Carlo</a>
+				<a href="#" class="b-nav__item__link js-race-link" data-name="monte-carlo">Monte-Carlo</a>
 			</li>
 			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link">Monthreal</a>
+				<a href="#" class="b-nav__item__link js-race-link" data-name="montreal">Montreal</a>
 			</li>
 			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link">Valencia</a>
+				<a href="#" class="b-nav__item__link js-race-link" data-name="valencia">Valencia</a>
 			</li>
 			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link">Silverstone</a>
+				<a href="#" class="b-nav__item__link js-race-link" data-name="silverstone">Silverstone</a>
 			</li>
 			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link">Hockenheimring</a>
+				<a href="#" class="b-nav__item__link js-race-link" data-name="hockenheimring">Hockenheimring</a>
 			</li>
 			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link">Hungaroring</a>
+				<a href="#" class="b-nav__item__link js-race-link" data-name="hungaroring">Hungaroring</a>
 			</li>
 			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link">Spa Francorchamps</a>
+				<a href="#" class="b-nav__item__link js-race-link" data-name="spa-francorshamps">Spa Francorchamps</a>
 			</li>
 			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link">Monza</a>
+				<a href="#" class="b-nav__item__link js-race-link" data-name="monza">Monza</a>
 			</li>
 			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link">Singapore</a>
+				<a href="#" class="b-nav__item__link js-race-link" data-name="singapore">Singapore</a>
 			</li>
 			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link">Korea</a>
+				<a href="#" class="b-nav__item__link js-race-link" data-name="korea">Korea</a>
 			</li>
 			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link">India</a>
+				<a href="#" class="b-nav__item__link js-race-link" data-name="india">India</a>
 			</li>
 			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link">Yas Marina</a>
+				<a href="#" class="b-nav__item__link js-race-link" data-name="yas-marina">Yas Marina</a>
 			</li>
 			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link">Austin</a>
+				<a href="#" class="b-nav__item__link js-race-link" data-name="austin">Austin</a>
 			</li>
 			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link">San Paolo</a>
+				<a href="#" class="b-nav__item__link js-race-link" data-name="sao-paolo">Sao Paolo</a>
 			</li>
 		</ul>
 	</div>
 	<div class="p-tape">
-		<div class="js-ajax-content">
+		<div class="js-content-box">
 		</div>
 	</div>
 	<div class="p-foot">
 		&copy;&nbsp;2012
 	</div>
-
-
 </div>
+
+<script>
+$(function(){
+	var path = 'data/content/',
+		$contentBox = $('.js-content-box'),
+		$raceLink = $('.js-race-link'),
+		$raceName = $raceLink.data('name');
+
+	$raceLink.click(function(e){
+		e.preventDefault();
+		var $this = $(this),
+			$raceName = $this.data('name'),
+			requestedJSON = path + $raceName + '.json';
+
+		$.getJSON(requestedJSON, function(data) {
+			var items = [];
+			$.each(data, function(key, val) {
+				items.push('<li id="' + key + '">' + val + '</li>');
+			});
+
+			$('<ul/>', {
+				'class': 'my-new-list',
+				html: items.join('')
+			}).appendTo($contentBox);
+		});
+
+		console.log(requestedJSON);
+	})
+})
+</script>
+
+
 
 </body>
 </html>
