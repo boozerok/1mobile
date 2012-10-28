@@ -18,7 +18,7 @@
 
 <div class="p-wrap">
 	<div class="p-head">
-		<ul class="b-nav b-clear">
+		<ul class="b-nav b-clear js-race-list" data-class-current="b-nav__item__link_on">
 			<li class="b-nav__item b-nav__item_title">Races</li>
 			<li class="b-nav__item">
 				<a href="#" class="b-nav__item__link js-race-link" data-name="albert-park">Albert Park</a>
@@ -91,7 +91,8 @@
 <script>
 var path = 'data/content/',
 	$contentBox = $('.js-content-box'),
-	$raceLink = $('.js-race-link'),
+	$raceList = $('.js-race-list'),
+	$raceLink = $('.js-race-link', $raceList),
 	$raceName = $raceLink.data('name');
 
 $(function(){
@@ -99,11 +100,18 @@ $(function(){
 		e.preventDefault();
 		var $this = $(this),
 			$raceName = $this.data('name'),
-			requestedJSON = path + $raceName + '/common.json';
+			requestedJSON = path + $raceName + '/common.json',
+			$currentClass = $raceList.data('class-current');
 
-		getRaceData(requestedJSON);
+		if ( !$this.hasClass($currentClass) ) {
+			getRaceData(requestedJSON);
+		}
+		
+		$raceLink.removeClass($currentClass);
+		$this.addClass($currentClass);
 
 		console.log(requestedJSON);
+
 	});
 	
 });
@@ -117,10 +125,11 @@ function drawCommonData(data) {
 		'<div class="b-race">'+
 			'<h1 class="b-race__name">'+ data.raceName +'</h1>' +
 			'<div class="b-race__location">'+ data.city +', '+ data.country +'</div>'+
+			'<img src="'+ data.pics.gifs[0] +'">'+
 		'</div>'
 		
 	
-	$contentBox.append(tpl)
+	$contentBox.html(tpl)
 	console.log(tpl)
 }
 </script>

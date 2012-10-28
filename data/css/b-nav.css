@@ -12,6 +12,12 @@
 	white-space:nowrap;
 	vertical-align:top;
 }
+.b-nav__item__link_on,
+.b-nav__item__link_on:hover {
+	text-decoration:none;
+	cursor:default;
+	color:#000;
+}
 .b-nav__item_title {
 	text-transform:uppercase;
 }
