@@ -1,0 +1,11 @@
+{
+	"country"		: "Australia",
+	"city"			: "Melbourne",
+	"raceName"		: "Australian Grand Prix",
+	"circuitInfo"	: {
+		"name"		: "Albert Park",
+		"length"	: "5 303 m",
+		"turns"		: "16"
+	}
+	
+}
