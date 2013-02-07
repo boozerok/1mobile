@@ -18,7 +18,7 @@
 
 <div class="p-wrap">
 	<div class="p-head">
-		<ul class="b-nav b-clear">
+		<ul class="b-nav b-clear js-race-list" data-class-current="b-nav__item__link_on">
 			<li class="b-nav__item b-nav__item_title">Races</li>
 			<li class="b-nav__item">
 				<a href="#" class="b-nav__item__link js-race-link" data-name="albert-park">Albert Park</a>
@@ -89,36 +89,50 @@
 </div>
 
 <script>
-$(function(){
-	var path = 'data/content/',
-		$contentBox = $('.js-content-box'),
-		$raceLink = $('.js-race-link'),
-		$raceName = $raceLink.data('name');
+var path = 'data/content/',
+	$contentBox = $('.js-content-box'),
+	$raceList = $('.js-race-list'),
+	$raceLink = $('.js-race-link', $raceList),
+	$raceName = $raceLink.data('name');
 
+$(function(){
 	$raceLink.click(function(e){
 		e.preventDefault();
 		var $this = $(this),
 			$raceName = $this.data('name'),
-			requestedJSON = path + $raceName + '.json';
+			requestedJSON = path + $raceName + '/common.json',
+			$currentClass = $raceList.data('class-current');
 
-		$.getJSON(requestedJSON, function(data) {
-			var items = [];
-			$.each(data, function(key, val) {
-				items.push('<li id="' + key + '">' + val + '</li>');
-			});
-
-			$('<ul/>', {
-				'class': 'my-new-list',
-				html: items.join('')
-			}).appendTo($contentBox);
-		});
+		if ( !$this.hasClass($currentClass) ) {
+			getRaceData(requestedJSON);
+		}
+		
+		$raceLink.removeClass($currentClass);
+		$this.addClass($currentClass);
 
 		console.log(requestedJSON);
-	})
-})
+
+	});
+	
+});
+function getRaceData(requestedJSON) {
+	$.getJSON(requestedJSON, function(data) {
+		drawCommonData(data);
+	});
+}
+function drawCommonData(data) {
+	var tpl = '' +
+		'<div class="b-race">'+
+			'<h1 class="b-race__name">'+ data.raceName +'</h1>' +
+			'<div class="b-race__location">'+ data.city +', '+ data.country +'</div>'+
+			'<img src="'+ data.pics.gifs[0] +'">'+
+		'</div>'
+		
+	
+	$contentBox.html(tpl)
+	console.log(tpl)
+}
 </script>
-
-
 
 </body>
 </html>
