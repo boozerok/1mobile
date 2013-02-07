@@ -1,16 +1,18 @@
 .b-nav {
 	position:relative;
 	width:100%;
+	-webkit-column-count:7;
+	-moz-column-count:7;
+	column-count:7;
 }
 .b-nav__item {
-	font:14px/30px Arial;
-	float:left;
+	font-size:1em;
+	line-height:2em;
+	display:block;
 	overflow:hidden;
-	width:20%;
 	list-style:none;
 	text-overflow:ellipsis;
 	white-space:nowrap;
-	vertical-align:top;
 }
 .b-nav__item_title {
 	text-transform:uppercase;
