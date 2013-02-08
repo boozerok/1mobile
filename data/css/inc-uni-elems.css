@@ -5,3 +5,6 @@
 	visibility:hidden;
 	content:'.';
 }
+.i-none {
+	display:none;
+}
