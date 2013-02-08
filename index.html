@@ -3,11 +3,13 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="IE=edge">
-	<meta name="viewport" content="initial-scale=1.0">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>1mobile</title>
 	<link rel="stylesheet" media="all" href="data/css/all.css">
 	<link rel="stylesheet" media="all" href="data/css/media.css">
 	<script src="data/js/jquery-1.8.2.min.js"></script>
+	<script src="data/js/hammer.js"></script>
+	<script src="data/js/jquery.specialevent.hammer.js"></script>
 	<script src="data/js/common.js"></script>
 	<!--[if lt IE 9]>
 		<script src="data/js/html5.js"></script>
@@ -18,66 +20,68 @@
 
 <div class="p-wrap">
 	<div class="p-head">
-		<ul class="b-nav js-race-list" data-class-current="b-nav__item__link_on">
-			<li class="b-nav__item b-nav__item_title i-none">Races</li>
-			<li class="b-nav__item">
-				<a href="#Albert-Park" class="b-nav__item__link js-race-link" data-name="albert-park">Albert Park</a>
-			</li>
-			<li class="b-nav__item">
-				<a href="#Sepang" class="b-nav__item__link js-race-link" data-name="sepang">Sepang</a>
-			</li>
-			<li class="b-nav__item">
-				<a href="#Shanghai" class="b-nav__item__link js-race-link" data-name="shanghai">Shanghai</a>
-			</li>
-			<li class="b-nav__item">
-				<a href="#Bahrain" class="b-nav__item__link js-race-link" data-name="bahrain">Bahrain</a>
-			</li>
-			<li class="b-nav__item">
-				<a href="#Barcelona" class="b-nav__item__link js-race-link" data-name="barcelona">Barcelona</a>
-			</li>
-			<li class="b-nav__item">
-				<a href="#Monte-Carlo" class="b-nav__item__link js-race-link" data-name="monte-carlo">Monte-Carlo</a>
-			</li>
-			<li class="b-nav__item">
-				<a href="#Montreal" class="b-nav__item__link js-race-link" data-name="montreal">Montreal</a>
-			</li>
-			<li class="b-nav__item">
-				<a href="#Valencia" class="b-nav__item__link js-race-link" data-name="valencia">Valencia</a>
-			</li>
-			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link js-race-link" data-name="silverstone">Silverstone</a>
-			</li>
-			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link js-race-link" data-name="hockenheimring">Hockenheimring</a>
-			</li>
-			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link js-race-link" data-name="hungaroring">Hungaroring</a>
-			</li>
-			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link js-race-link" data-name="spa-francorshamps">Spa Francorchamps</a>
-			</li>
-			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link js-race-link" data-name="monza">Monza</a>
-			</li>
-			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link js-race-link" data-name="singapore">Singapore</a>
-			</li>
-			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link js-race-link" data-name="korea">Korea</a>
-			</li>
-			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link js-race-link" data-name="india">India</a>
-			</li>
-			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link js-race-link" data-name="yas-marina">Yas Marina</a>
-			</li>
-			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link js-race-link" data-name="austin">Austin</a>
-			</li>
-			<li class="b-nav__item">
-				<a href="#" class="b-nav__item__link js-race-link" data-name="sao-paolo">Sao Paolo</a>
-			</li>
-		</ul>
+		<nav class="b-nav-wrap">
+			<ul class="b-nav js-race-list" data-class-current="b-nav__item__link_on" id="id">
+				<li class="b-nav__item b-nav__item_title i-none">Races</li>
+				<li class="b-nav__item">
+					<a href="#Albert-Park" class="b-nav__item__link js-race-link" data-name="albert-park">Albert Park</a>
+				</li>
+				<li class="b-nav__item">
+					<a href="#Sepang" class="b-nav__item__link js-race-link" data-name="sepang">Sepang</a>
+				</li>
+				<li class="b-nav__item">
+					<a href="#Shanghai" class="b-nav__item__link js-race-link" data-name="shanghai">Shanghai</a>
+				</li>
+				<li class="b-nav__item">
+					<a href="#Bahrain" class="b-nav__item__link js-race-link" data-name="bahrain">Bahrain</a>
+				</li>
+				<li class="b-nav__item">
+					<a href="#Barcelona" class="b-nav__item__link js-race-link" data-name="barcelona">Barcelona</a>
+				</li>
+				<li class="b-nav__item">
+					<a href="#Monte-Carlo" class="b-nav__item__link js-race-link" data-name="monte-carlo">Monte-Carlo</a>
+				</li>
+				<li class="b-nav__item">
+					<a href="#Montreal" class="b-nav__item__link js-race-link" data-name="montreal">Montreal</a>
+				</li>
+				<li class="b-nav__item">
+					<a href="#Valencia" class="b-nav__item__link js-race-link" data-name="valencia">Valencia</a>
+				</li>
+				<li class="b-nav__item">
+					<a href="#" class="b-nav__item__link js-race-link" data-name="silverstone">Silverstone</a>
+				</li>
+				<li class="b-nav__item">
+					<a href="#" class="b-nav__item__link js-race-link" data-name="hockenheimring">Hockenheimring</a>
+				</li>
+				<li class="b-nav__item">
+					<a href="#" class="b-nav__item__link js-race-link" data-name="hungaroring">Hungaroring</a>
+				</li>
+				<li class="b-nav__item">
+					<a href="#" class="b-nav__item__link js-race-link" data-name="spa-francorshamps">Spa Francorchamps</a>
+				</li>
+				<li class="b-nav__item">
+					<a href="#" class="b-nav__item__link js-race-link" data-name="monza">Monza</a>
+				</li>
+				<li class="b-nav__item">
+					<a href="#" class="b-nav__item__link js-race-link" data-name="singapore">Singapore</a>
+				</li>
+				<li class="b-nav__item">
+					<a href="#" class="b-nav__item__link js-race-link" data-name="korea">Korea</a>
+				</li>
+				<li class="b-nav__item">
+					<a href="#" class="b-nav__item__link js-race-link" data-name="india">India</a>
+				</li>
+				<li class="b-nav__item">
+					<a href="#" class="b-nav__item__link js-race-link" data-name="yas-marina">Yas Marina</a>
+				</li>
+				<li class="b-nav__item">
+					<a href="#" class="b-nav__item__link js-race-link" data-name="austin">Austin</a>
+				</li>
+				<li class="b-nav__item">
+					<a href="#" class="b-nav__item__link js-race-link" data-name="sao-paolo">Sao Paolo</a>
+				</li>
+			</ul>
+		</nav>
 	</div>
 	<div class="p-tape">
 		<div class="js-content-box">
@@ -89,13 +93,13 @@
 </div>
 
 <script>
-var path = 'data/content/',
-	$contentBox = $('.js-content-box'),
-	$raceList = $('.js-race-list'),
-	$raceLink = $('.js-race-link', $raceList),
-	$raceName = $raceLink.data('name');
-
 $(function(){
+	var path = 'data/content/',
+		$contentBox = $('.js-content-box'),
+		$raceList = $('.js-race-list'),
+		$raceLink = $('.js-race-link', $raceList),
+		$raceName = $raceLink.data('name');
+
 	$raceLink.click(function(e){
 		e.preventDefault();
 		var $this = $(this),
@@ -111,27 +115,49 @@ $(function(){
 		$this.addClass($currentClass);
 
 		console.log(requestedJSON);
-
 	});
 
+	function getRaceData(requestedJSON) {
+		$.getJSON(requestedJSON, function(data) {
+			drawCommonData(data);
+		});
+	}
+	function drawCommonData(data) {
+		var tpl = '' +
+			'<div class="b-race">'+
+				'<h1 class="b-race__name">'+ data.raceName +'</h1>' +
+				'<div class="b-race__location">'+ data.city +', '+ data.country +'</div>'+
+				'<img src="'+ data.pics.gifs[0] +'">'+
+			'</div>'
+
+
+		$contentBox.html(tpl)
+	}
+
+	var actions = 'hold tap swipe doubletap transformstart transform transformend dragstart drag dragend release';
+
+	function hammerLog( event ){
+		event.preventDefault();
+		console.log('Type: ' + event.type + ', Fingers: ' + event.touches.length + ', Direction: ' + event.direction);
+	}
+
+	//$raceList.on( actions,  hammerLog );
+	$raceList.on('drag', function(e){
+		var $this = $(this),
+			delta = $this.data('delta') || 0;
+			delta = delta + e.distanceX;
+		$this.css({
+			'left': delta + 'px'
+		});
+		console.log(delta);
+	});
+	$raceList.on('dragend', function(e){
+		var $this = $(this),
+			pos = parseFloat($this.css('left'));
+		$this.data('delta', pos);
+		console.log('pos: ' +pos);
+	});
 });
-function getRaceData(requestedJSON) {
-	$.getJSON(requestedJSON, function(data) {
-		drawCommonData(data);
-	});
-}
-function drawCommonData(data) {
-	var tpl = '' +
-		'<div class="b-race">'+
-			'<h1 class="b-race__name">'+ data.raceName +'</h1>' +
-			'<div class="b-race__location">'+ data.city +', '+ data.country +'</div>'+
-			'<img src="'+ data.pics.gifs[0] +'">'+
-		'</div>'
-
-
-	$contentBox.html(tpl)
-	console.log(tpl)
-}
 </script>
 
 </body>

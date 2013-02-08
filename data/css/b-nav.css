@@ -1,3 +1,6 @@
+.b-nav-wrap {
+	overflow:hidden;
+}
 .b-nav {
 	overflow:hidden;
 	position:relative;
@@ -19,38 +22,3 @@
 .b-nav__item_title {
 	text-transform:uppercase;
 }
-
-@media screen and (min-width:640px) and (min-height:640px) {
-	.b-nav {
-		white-space:normal;
-		-webkit-columns:5;
-		-moz-columns:5;
-		columns:5;
-	}
-	.b-nav__item {
-		display:block;
-		overflow:hidden;
-		white-space:nowrap;
-		margin:0;
-		text-overflow:ellipsis;
-	}
-}
-@media screen and (min-width:1280px) {
-	.b-nav {
-	}
-}
-/*
-@media screen and (max-height:480px) {
-	.b-nav {
-		-webkit-column-count:3;
-		-moz-column-count:3;
-		column-count:3;
-	}
-	text-overflow:ellipsis;
-	display:block;
-	overflow:hidden;
-	-webkit-column-count:4;
-	-moz-column-count:4;
-	column-count:4;
-
-} */

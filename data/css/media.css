@@ -1,3 +1,23 @@
+@media screen and (min-width:660px) and (min-height:660px) {
+	.b-nav {
+		white-space:normal;
+		-webkit-columns:5;
+		-moz-columns:5;
+		columns:5;
+	}
+	.b-nav__item {
+		display:block;
+		overflow:hidden;
+		white-space:nowrap;
+		margin:0;
+		text-overflow:ellipsis;
+	}
+	.b-nav__item_title {
+		display:block;
+	}
+}
+
+
 @media screen and (max-width:1280px) {
 	.p-wrap {
 		padding:0 2%;
