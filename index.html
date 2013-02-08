@@ -147,9 +147,6 @@ $(function(){
 			delta = $this.data('delta') || 0;
 			delta = delta + e.distanceX;
 
-		$raceLink.bind('tap', function(e){
-			e.preventDefault();
-		});
 		$this.css({
 			'left': delta + 'px'
 		});
