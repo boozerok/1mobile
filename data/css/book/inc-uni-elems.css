@@ -1,0 +1,10 @@
+.b-clear:after {
+	display:block;
+	clear:both;
+	height:0;
+	visibility:hidden;
+	content:'.';
+}
+.i-none {
+	display:none;
+}
