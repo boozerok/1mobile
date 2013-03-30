@@ -94,6 +94,7 @@
 
 <script>
 $(function(){
+	/*
 	var path = 'data/content/',
 		$contentBox = $('.js-content-box'),
 		$raceList = $('.js-race-list'),
@@ -157,7 +158,23 @@ $(function(){
 			pos = parseFloat($this.css('left'));
 		$this.data('delta', pos);
 		console.log('pos: ' +pos);
-	});
+	});*/
+
+	function getRace(id) {
+		$.getJSON('data/content/races.json', function(json) {
+			var json = json.races;
+			$.each(json, function(i) {
+				var obj = json[i],
+					race_id = obj.race_id,
+					race_name = obj.race_name;
+				if (race_id == id) {
+					console.log(race_name);
+				}
+				console.log(race_name);
+			});
+		});
+	}
+	getRace('2');
 });
 </script>
 
