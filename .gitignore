@@ -1,0 +1,6 @@
+*~
+*.pyc
+___*
+/.ropeproject
+/tags
+/tags.sh
