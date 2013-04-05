@@ -18,7 +18,7 @@ input[type="button"],input[type="submit"]{cursor:pointer;}
 strong{font-weight:bold;}
 em{font-style:italic;}
 body {
-	font:normal 12px/1.33em Arial, sans-serif, Tahoma, Helvetica;
+	font:normal 12px/1.33em Arial, sans-serif, Helvetica, Tahoma;
 	background:#ddd url('../img/cardboard_flat.png');
 	color:#333;
 }
@@ -35,3 +35,4 @@ body {
 	background-color:rgba(144,144,144,.4);
 	color:#f5f5f5;
 }
+/* 1em = 12px */
