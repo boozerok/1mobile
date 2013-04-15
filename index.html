@@ -8,9 +8,11 @@
 	<link rel="stylesheet" media="all" href="data/css/all.css">
 	<link rel="stylesheet" media="all" href="data/css/media.css">
 	<script src="data/js/jquery-1.8.2.min.js"></script>
-	<script src="data/js/hammer.js"></script>
-	<script src="data/js/jquery.specialevent.hammer.js"></script>
+	<script src="data/js/handlebars.js"></script>
+	<!--<script src="data/js/hammer.js"></script>
+	<script src="data/js/jquery.specialevent.hammer.js"></script>-->
 	<script src="data/js/common.js"></script>
+	<script src="data/content/json/races.js"></script>
 	<!--[if lt IE 9]>
 		<script src="data/js/html5.js"></script>
 		<script src="data/js/respond.min.js"></script>
@@ -132,42 +134,35 @@ $(function(){
 	function getRaces(id) {
 		$.getJSON('data/content/json/races.json', function(json) {
 			var races = json.races;
-			$.each(races, function(i) {
-				var race = races[i],
-					raceId = race.race_id,
-					raceName = race.race_name,
-					raceDates = race.race_timetable.race,
-					raceFlag = 'data/content/pic/flag/' + race.race_alias + '.png',
-					blockMods,
-					raceTemplate;
-
-				if (raceId != id) {
-					blockMods = ' b-race_off';
-				}
-
-
-				raceTemplate = [
-				'<div class="b-race b-clear', blockMods, '">',
-					'<a href="#', raceId, '" class="b-race__link">',
-						'<img src="', raceFlag, '" alt="', raceName, '" class="b-race__pic">',
-						'<strong class="b-race__title">', raceName, '</strong>',
-					'</a>',
-					'<div class="b-race__dates">', raceDates, '</div>',
-					'<div class="b-race__countdown">',
-						'<span class="b-race__countdown__item"><span class="b-race__countdown__num">9</span>days</span>',
-						'<span class="b-race__countdown__item"><span class="b-race__countdown__num">15</span>hrs</span>',
-						'<span class="b-race__countdown__item"><span class="b-race__countdown__num">35</span>mins</span>',
-					'</div>',
-				'</div>'].join('');
-
-				$('.js-content').prepend(raceTemplate);
-				console.log(raceTemplate);
-			});
 		});
 	}
 
-	getRaces('3');
+	var raceTemplate = [
+	'{{#races}}',
+	'<div class="b-race b-race_off b-clear js-race">',
+		'<a href="#{{race_id}}" class="b-race__link">',
+			'<img src="data/content/pic/flag/{{race_alias}}.png" alt="{{race_name}}" class="b-race__pic">',
+			'<strong class="b-race__title">{{race_name}}</strong>',
+		'</a>',
+
+		'<div class="b-race__dates">{{race_timetable.race}}</div>',
+		'<div class="b-race__countdown">',
+			'<span class="b-race__countdown__item"><span class="b-race__countdown__num">9</span>days</span>',
+			'<span class="b-race__countdown__item"><span class="b-race__countdown__num">15</span>hrs</span>',
+			'<span class="b-race__countdown__item"><span class="b-race__countdown__num">35</span>mins</span>',
+		'</div>',
+
+	'</div>',
+	'{{/races}}'].join('');
+
+	var raceTemplateComp = Handlebars.compile(raceTemplate),
+		raceOut = raceTemplateComp(racesData),
+		$racesBox = $('.js-content').html(raceOut),
+		$raceLast = $('.js-race:first', $racesBox).removeClass('b-race_off');
+
 });
+
+
 </script>
 
 </body>
