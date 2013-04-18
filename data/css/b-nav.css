@@ -61,6 +61,9 @@
 	text-overflow:ellipsis;
 	border-bottom:1px solid #ddd;
 }
+.b-race:last-child {
+	border-bottom:0;
+}
 .b-race__link:hover {
 	text-decoration:none;
 }
@@ -106,7 +109,7 @@
 }
 .b-race_off .b-race__link {
 	float:left;
-	width:72%;
+	max-width:72%;
 	overflow:hidden;
 	text-overflow:ellipsis;
 }

@@ -3,16 +3,16 @@ var racesData = {
 		{
 			"race_id"			: "3",
 			"race_alias" 		: "china",
-			"race_name" 		: "Гран При Китая",
+			"race_name" 		: "Chinese Grand Prix",
 			"race_timetable" 	: {
-				"practice_1" 	: "2013-03-22T10:00/P1H30M",
-				"practice_2" 	: "2013-03-22T14:00/P1H30M",
-				"practice_3" 	: "2013-03-23T13:00/P1H30M",
-				"qualifying" 	: "2013-03-24T16:00",
-				"race" 			: "2013-03-25T16:00"
+				"practice_1" 	: "2013-03-22T10:00:00",
+				"practice_2" 	: "2013-03-22T14:00:00",
+				"practice_3" 	: "2013-03-23T13:00:00",
+				"qualifying" 	: "2013-03-24T16:00:00",
+				"race" 			: "2013-05-25T16:00:00"
 			},
 			"race_circuit" 			: {
-				"curcuit_name" 		: "Сепанг",
+				"curcuit_name" 		: "Shanghai International Circuit",
 				"curcuit_laps" 		: "56",
 				"curcuit_length" 	: "5.543"
 			},
@@ -40,16 +40,16 @@ var racesData = {
 		{
 			"race_id"			: "2",
 			"race_alias" 		: "malaysia",
-			"race_name" 		: "Гран При Малайзии",
+			"race_name" 		: "Malaysia Grand Prix",
 			"race_timetable" 	: {
-				"practice_1" 	: "2013-03-22T10:00/P1H30M",
-				"practice_2" 	: "2013-03-22T14:00/P1H30M",
-				"practice_3" 	: "2013-03-23T13:00/P1H30M",
-				"qualifying" 	: "2013-03-24T16:00",
-				"race" 			: "2013-03-25T16:00"
+				"practice_1" 	: "2013-03-22T10:00:00",
+				"practice_2" 	: "2013-03-22T14:00:00",
+				"practice_3" 	: "2013-03-23T13:00:00",
+				"qualifying" 	: "2013-03-24T16:00:00",
+				"race" 			: "2013-03-25T16:00:00"
 			},
 			"race_circuit" 			: {
-				"curcuit_name" 		: "Сепанг",
+				"curcuit_name" 		: "Sepang International Circuit",
 				"curcuit_laps" 		: "56",
 				"curcuit_length" 	: "5.543"
 			},
@@ -77,16 +77,16 @@ var racesData = {
 		{
 			"race_id"			: "1",
 			"race_alias" 		: "australia",
-			"race_name" 		: "Гран При Австралии",
+			"race_name" 		: "Australian Grand Prix",
 			"race_timetable" 	: {
-				"practice_1" 	: "2013-03-15T12:30/P1H30M",
-				"practice_2" 	: "2013-03-15T16:30/P1H30M",
-				"practice_3" 	: "2013-03-15T14:00/P1H30M",
-				"qualifying" 	: "2013-03-16T17:00",
-				"race" 			: "2013-03-17T17:00"
+				"practice_1" 	: "2013-03-15T12:30:00",
+				"practice_2" 	: "2013-03-15T16:30:00",
+				"practice_3" 	: "2013-03-15T14:00:00",
+				"qualifying" 	: "2013-03-16T17:00:00",
+				"race" 			: "2013-03-17T17:00:00"
 			},
 			"race_circuit" 			: {
-				"curcuit_name" 		: "Альберт Парк",
+				"curcuit_name" 		: "Albert Park",
 				"curcuit_laps" 		: "58",
 				"curcuit_length" 	: "5.303"
 			},
