@@ -8,7 +8,8 @@
 	<link rel="stylesheet" media="all" href="data/css/all.css">
 	<link rel="stylesheet" media="all" href="data/css/media.css">
 	<script src="data/js/jquery-1.8.2.min.js"></script>
-	<script src="data/js/handlebars.js"></script>
+	<!--<script src="data/js/handlebars.js"></script>-->
+	<script src="data/js/tempo.min.js"></script>
 	<script src="data/js/date.format.js"></script>
 	<script src="data/js/common.js"></script>
 	<script src="data/content/json/races.js"></script>
@@ -28,15 +29,33 @@
 		</nav>
 	</div>
 	<div class="p-tape">
-		<div class="p-races js-content">
+		<div class="p-races js-content" id="races">
+			<div class="b-race b-race_off b-clear js-race" data-template="data-template">
+				{% if 1 %}{{_tempo.index}}{% endif %}
+				<a href="#{{race_id}}" class="b-race__link">
+					<img src="data/content/pic/flag/{{race_country}}.png" alt="{{race_name}}" class="b-race__pic js-race-flag">
+					<strong class="b-race__title">{{race_name}}</strong>
+				</a>
+				<div class="b-race__dates js-race-date" data-date="{{race_timetable.race}}">{{race_timetable.race | date 'D MMMM, HH:mm'}}</div>
+				<div class="b-race__countdown js-race-at">
+					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-days">9</span>days</span>
+					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-hours">15</span>hrs</span>
+					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-mins">35</span>min</span>
+					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-secs">35</span>sec</span>
+				</div>
+			</div>
+		</div>
+
+
+			<!--
 			<script type="text/x-handlebars-template" class="js-tpl-race">
 				{{#races}}
 				<div class="b-race b-race_off b-clear js-race">
 					<a href="#{{race_id}}" class="b-race__link">
-						<img src="data/content/pic/flag/{{race_alias}}.png" alt="{{race_name}}" class="b-race__pic">
+						<img src="data/content/pic/flag/{{race_country}}.png" alt="{{race_name}}" class="b-race__pic js-race-flag">
 						<strong class="b-race__title">{{race_name}}</strong>
 					</a>
-					<div class="b-race__dates js-race-date js-date" data-date="{{race_timetable.race}}">{{formatted_date race_timetable.race}}</div>
+					<div class="b-race__dates js-race-date" data-date="{{race_timetable.race}}">{{formatted_date race_timetable.race}}</div>
 					<div class="b-race__countdown js-race-at">
 						<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-days">9</span>days</span>
 						<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-hours">15</span>hrs</span>
@@ -46,7 +65,25 @@
 				</div>
 				{{/races}}
 			</script>
-		</div>
+
+			<script type="text/kite" id="races">
+			{{#races}}
+			<div class="b-race{{? at != 0}} b-race_off{{/?}} b-clear js-race">
+				<a href="#{{race_id}}" class="b-race__link">
+					<img src="data/content/pic/flag/{{race_country}}{{? at != 0}}_th{{/?}}.png" alt="{{race_name}}" class="b-race__pic js-race-flag">
+					<strong class="b-race__title">{{race_name}}</strong>
+				</a>
+				<div class="b-race__dates js-race-date" data-date="{{race_timetable.race}}">{{race_timetable.race|date}}</div>
+				<div class="b-race__countdown js-race-at">
+					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-days">9</span>days</span>
+					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-hours">15</span>hrs</span>
+					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-mins">35</span>min</span>
+					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-secs">35</span>sec</span>
+				</div>
+			</div>
+			{{/races}}
+			</script>
+			-->
 	</div>
 	<div class="p-foot">
 		&copy;&nbsp;2012
@@ -66,11 +103,8 @@ function drawRaces() {
 		$racesBox = $('.js-content').html(raceOut),
 		$raceItem = $('.js-race', $racesBox),
 		$raceItemFirst = $('.js-race:first', $racesBox),
-		$raceAt = $('.js-race-at', $raceItemFirst),
-		$raceAtDays = $('.js-race-at-days', $raceAt),
-		$raceAtHours = $('.js-race-at-hours', $raceAt),
-		$raceAtMins = $('.js-race-at-mins', $raceAt),
-		$raceAtSecs = $('.js-race-at-secs', $raceAt);
+		isoDate = $('.js-race-date', $raceItemFirst).data('date'),
+		$raceAt = $('.js-race-at', $raceItemFirst);
 
 	$raceItemFirst.removeClass('b-race_off');
 	countdown(isoDate, $raceAt);
@@ -110,11 +144,10 @@ function countdown(isoDate, box) {
 
 
 $(function(){
-	drawRaces();
-	//countdown();
+	//drawRaces();
 });
 
-
+Tempo.prepare('races').render(racesData.races);
 
 </script>
 

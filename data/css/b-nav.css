@@ -119,9 +119,9 @@
 .b-race_off .b-race__pic {
 	float:none;
 	display:inline-block;
-	width:20px;
+	width:25px;
 	margin-right:3px;
-	vertical-align:-1px;
+	vertical-align:middle;
 }
 .b-race_off .b-race__title {
 	font-weight:normal;
