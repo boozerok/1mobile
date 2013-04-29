@@ -8,14 +8,10 @@
 	<link rel="stylesheet" media="all" href="data/css/all.css">
 	<link rel="stylesheet" media="all" href="data/css/media.css">
 	<script src="data/js/jquery-1.8.2.min.js"></script>
-	<!--<script src="data/js/handlebars.js"></script>-->
 	<script src="data/js/tempo.min.js"></script>
-	<script src="data/js/date.format.js"></script>
-	<script src="data/js/common.js"></script>
 	<script src="data/content/json/races.js"></script>
 	<!--[if lt IE 9]>
 		<script src="data/js/html5.js"></script>
-		<script src="data/js/respond.min.js"></script>
 	<![endif]-->
 </head>
 <body>
@@ -29,11 +25,12 @@
 		</nav>
 	</div>
 	<div class="p-tape">
-		<div class="p-races js-content" id="races">
-			<div class="b-race b-race_off b-clear js-race" data-template="data-template">
-				{% if 1 %}{{_tempo.index}}{% endif %}
+		<div class="p-races js-content js-races" id="races">
+			<div class="b-race b-race_off b-clear js-race" data-template="data-template" data-class-disabled="b-race_off">
 				<a href="#{{race_id}}" class="b-race__link">
-					<img src="data/content/pic/flag/{{race_country}}.png" alt="{{race_name}}" class="b-race__pic js-race-flag">
+					<span class="b-race__pic js-race-flag">
+						<img src="" alt="{{race_name}}" data-src="data/content/pic/flag/{{race_country}}_th.png">
+					</span>
 					<strong class="b-race__title">{{race_name}}</strong>
 				</a>
 				<div class="b-race__dates js-race-date" data-date="{{race_timetable.race}}">{{race_timetable.race | date 'D MMMM, HH:mm'}}</div>
@@ -45,45 +42,6 @@
 				</div>
 			</div>
 		</div>
-
-
-			<!--
-			<script type="text/x-handlebars-template" class="js-tpl-race">
-				{{#races}}
-				<div class="b-race b-race_off b-clear js-race">
-					<a href="#{{race_id}}" class="b-race__link">
-						<img src="data/content/pic/flag/{{race_country}}.png" alt="{{race_name}}" class="b-race__pic js-race-flag">
-						<strong class="b-race__title">{{race_name}}</strong>
-					</a>
-					<div class="b-race__dates js-race-date" data-date="{{race_timetable.race}}">{{formatted_date race_timetable.race}}</div>
-					<div class="b-race__countdown js-race-at">
-						<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-days">9</span>days</span>
-						<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-hours">15</span>hrs</span>
-						<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-mins">35</span>min</span>
-						<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-secs">35</span>sec</span>
-					</div>
-				</div>
-				{{/races}}
-			</script>
-
-			<script type="text/kite" id="races">
-			{{#races}}
-			<div class="b-race{{? at != 0}} b-race_off{{/?}} b-clear js-race">
-				<a href="#{{race_id}}" class="b-race__link">
-					<img src="data/content/pic/flag/{{race_country}}{{? at != 0}}_th{{/?}}.png" alt="{{race_name}}" class="b-race__pic js-race-flag">
-					<strong class="b-race__title">{{race_name}}</strong>
-				</a>
-				<div class="b-race__dates js-race-date" data-date="{{race_timetable.race}}">{{race_timetable.race|date}}</div>
-				<div class="b-race__countdown js-race-at">
-					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-days">9</span>days</span>
-					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-hours">15</span>hrs</span>
-					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-mins">35</span>min</span>
-					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-secs">35</span>sec</span>
-				</div>
-			</div>
-			{{/races}}
-			</script>
-			-->
 	</div>
 	<div class="p-foot">
 		&copy;&nbsp;2012
@@ -91,63 +49,77 @@
 </div>
 
 <script>
-function drawRaces() {
-	Handlebars.registerHelper('formatted_date', function(isoDate) {
-		var date = new Date(isoDate);
-		return date.format('dd mmmm, HH:MM');
-	});
+Tempo.prepare('races').render(racesData.races);
+(function ($) {
+	var jRaces = $('.js-races'),
+		dateNow = new Date();
 
-	var raceTemplate = $('.js-tpl-race').html(),
-		raceTemplateComp = Handlebars.compile(raceTemplate),
-		raceOut = raceTemplateComp(racesData),
-		$racesBox = $('.js-content').html(raceOut),
-		$raceItem = $('.js-race', $racesBox),
-		$raceItemFirst = $('.js-race:first', $racesBox),
-		isoDate = $('.js-race-date', $raceItemFirst).data('date'),
-		$raceAt = $('.js-race-at', $raceItemFirst);
+	var fCountdown = function(isoDate, box) {
+		var isoDate = isoDate,
+			dateEnd = new Date(isoDate),
+			dateNow = new Date(),
+			timeDiff = dateEnd.getTime() - dateNow.getTime();
 
-	$raceItemFirst.removeClass('b-race_off');
-	countdown(isoDate, $raceAt);
+		if (timeDiff <= 0) {
+			clearTimeout(timer);
+			return false;
+			// Run any code needed for countdown completion here
+		}
 
-}
+		var seconds = Math.floor(timeDiff / 1000),
+			minutes = Math.floor(seconds / 60),
+			hours = Math.floor(minutes / 60),
+			days = Math.floor(hours / 24);
 
-function countdown(isoDate, box) {
-	var isoDate = isoDate,
-		end = new Date(isoDate),
-		now = new Date(),
-		timeDiff = end.getTime() - now.getTime();
+		hours %= 24;
+		minutes %= 60;
+		seconds %= 60;
 
-	if (timeDiff <= 0) {
-		clearTimeout(timer);
-		return false;
-		// Run any code needed for countdown completion here
+		$('.js-race-at-days', box).text(days);
+		$('.js-race-at-hours', box).text(hours);
+		$('.js-race-at-mins', box).text(minutes);
+		$('.js-race-at-secs', box).text(seconds);
+
+		var timer = setTimeout(function(){
+			fCountdown(isoDate, box);
+		}, 1000);
+	};
+
+	var fGetNearest = function(jRace) {
+		var jThis;
+		jRace.each(function(){
+			var sDate = $(this).find('.js-race-date').data('date');
+			sDate = new Date(sDate);
+			if (dateNow < sDate) {
+				jThis = $(this);
+				return false;
+			}
+		});
+		if (jThis) {
+			return jThis;
+		}
 	}
 
-	var seconds = Math.floor(timeDiff / 1000),
-		minutes = Math.floor(seconds / 60),
-		hours = Math.floor(minutes / 60),
-		days = Math.floor(hours / 24);
+	var fShowNearest = function() {
+		var jRace = jRaces.find('.js-race'),
+			jRaceNear = fGetNearest(jRace),
+			jRaceFlag = jRaceNear.find('.js-race-flag img'),
+			sRaceFlag = jRaceFlag.attr('src').replace('_th.', '.'),
+			sRaceDate = jRaceNear.find('.js-race-date').data('date'),
+			jRaceCount = jRaceNear.find('.js-race-at'),
+			sToggleClass = jRaceNear.data('class-disabled');
 
-	hours %= 24;
-	minutes %= 60;
-	seconds %= 60;
+		jRaceFlag.attr('src', sRaceFlag);
+		jRaceNear.removeClass(sToggleClass);
 
-	$('.js-race-at-days', box).text(days);
-	$('.js-race-at-hours', box).text(hours);
-	$('.js-race-at-mins', box).text(minutes);
-	$('.js-race-at-secs', box).text(seconds);
+		fCountdown(sRaceDate, jRaceCount);
+	};
 
-	var timer = setTimeout(function(){
-		countdown(isoDate, box);
-	}, 1000);
-}
+	//init
+	fShowNearest();
 
+})(jQuery);
 
-$(function(){
-	//drawRaces();
-});
-
-Tempo.prepare('races').render(racesData.races);
 
 </script>
 

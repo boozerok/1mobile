@@ -60,6 +60,7 @@
 	white-space:nowrap;
 	text-overflow:ellipsis;
 	border-bottom:1px solid #ddd;
+	background:#eee;
 }
 .b-race:last-child {
 	border-bottom:0;
@@ -67,7 +68,7 @@
 .b-race__link:hover {
 	text-decoration:none;
 }
-.b-race__pic {
+.b-race__pic img {
 	float:left;
 	max-width:40%;
 	margin-right:2.5%;
@@ -115,8 +116,8 @@
 }
 .b-race_off .b-race__link:hover .b-race__title {
 	text-decoration:;
-	}
-.b-race_off .b-race__pic {
+}
+.b-race_off .b-race__pic img {
 	float:none;
 	display:inline-block;
 	width:25px;
