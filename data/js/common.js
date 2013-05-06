@@ -55,14 +55,11 @@
 	var fShowNearest = function() {
 		var jRace = $('.js-race'),
 			jRaceNear = fGetNearest(jRace),
-			jRaceFlag = jRaceNear.find('.js-race-flag img'),
-			sRaceFlag = jRaceFlag.attr('src').replace('_th.', '.'),
 			sRaceDate = jRaceNear.find('.js-race-date').data('date'),
 			jRaceCount = jRaceNear.find('.js-race-at'),
-			sToggleClass = jRaceNear.data('class-disabled');
+			sToggleClass = jRaceNear.data('class-enabled');
 
-		jRaceFlag.attr('src', sRaceFlag);
-		jRaceNear.removeClass(sToggleClass);
+		jRaceNear.addClass(sToggleClass);
 
 		fCountdown(sRaceDate, jRaceCount);
 	};
@@ -75,7 +72,7 @@
 	}
 
 	var fShowRaces = function() {
-		$.getJSON('/data/content/json/races.json', function(data) {
+		$.getJSON('data/content/json/races.json', function(data) {
 			jContentTempo.render(data.races);
 			fShowNearest();
 		});

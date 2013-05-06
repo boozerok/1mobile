@@ -56,27 +56,35 @@
 .b-race {
 	overflow:hidden;
 	position:relative;
-	padding:2.5%;
+	padding:1.2% 1.5%;
 	white-space:nowrap;
 	text-overflow:ellipsis;
 	border-bottom:1px solid #ddd;
-	background:#eee;
+	background:#fff;
 }
 .b-race:last-child {
 	border-bottom:0;
 }
+.b-race__link {
+	float:left;
+	max-width:72%;
+	overflow:hidden;
+	text-overflow:ellipsis;
+}
 .b-race__link:hover {
 	text-decoration:none;
 }
-.b-race__pic img {
-	float:left;
-	max-width:40%;
-	margin-right:2.5%;
+.b-race__pic {
+	display:inline-block;
+	width:32px;
+	height:25px;
+	margin-right:3px;
+	vertical-align:middle;
+	background:url('../../data/img/flags/sprite-flags-32.png') no-repeat 0 0;
 }
 .b-race__title {
-	font-size:1.166666666666667em;
-	text-transform:uppercase;
-	color:#444;
+	font-size:1em;
+	color:#999;
 }
 .b-race__link:hover .b-race__title,
 .b-race__link:active .b-race__title {
@@ -85,9 +93,11 @@
 }
 .b-race__dates {
 	font-size:0.9166666666666667em; /* 11px */
+	float:right;
 	color:#999;
 }
 .b-race__countdown {
+	display:none;
 	overflow:hidden;
 	margin-top:1.25%;
 }
@@ -103,35 +113,99 @@
 	color:#000;
 }
 
-.b-race_off {
-	line-height:2.666666666666667em;
-	padding-top:0;
-	padding-bottom:0;
+.b-race_australia .b-race__pic {
+	background-position:0 -64px;
 }
-.b-race_off .b-race__link {
-	float:left;
-	max-width:72%;
-	overflow:hidden;
-	text-overflow:ellipsis;
+.b-race_malaysia .b-race__pic {
+	background-position:0 -608px;
 }
-.b-race_off .b-race__link:hover .b-race__title {
-	text-decoration:;
+.b-race_china .b-race__pic {
+	background-position:0 -224px;
 }
-.b-race_off .b-race__pic img {
+.b-race_bahrain .b-race__pic {
+	background-position:0 -128px;
+}
+.b-race_barcelona .b-race__pic {
+	background-position:0 -288px;
+}
+.b-race_monaco .b-race__pic {
+	background-position:0 -416px;
+}
+.b-race_canada .b-race__pic {
+	background-position:0 -192px;
+}
+
+.b-race_on {
+	padding-top:1.5%;
+	padding-bottom:1.5%;
+}
+.b-race_on .b-race__link {
+	display:inline;
 	float:none;
-	display:inline-block;
-	width:25px;
-	margin-right:3px;
-	vertical-align:middle;
 }
-.b-race_off .b-race__title {
-	font-weight:normal;
-	font-size:1em;
-	color:#999;
+.b-race_on .b-race__pic {
+	float:left;
+	position:relative;
+	max-width:40%;
+	width:300px;
+	height:auto;
+	margin-right:2.5%;
+	box-shadow:0 2px 10px rgba(0,0,0,.5);
+	background-color:rgba(0,0,0,.3);
+	background-position:0 0!important;
+	background-size:100%!important;
 }
-.b-race_off .b-race__dates {
-	float:right;
+.b-race_on .b-race__pic:before {
+	display:block;
+	padding-top:66.66666666666667%;
+	content:'';
 }
-.b-race_off .b-race__countdown {
-	display:none;
+.b-race_on .b-race__title {
+	font-weight:bold;
+	font-size:1.166666666666667em;
+	text-transform:uppercase;
+	color:#444;
+}
+.b-race_on .b-race__dates {
+	float:none;
+}
+.b-race_on .b-race__countdown {
+	display:block;
+}
+
+.b-race_on.b-race_australia .b-race__pic {
+	background-image:url('../../data/img/flags/australia.png');
+}
+.b-race_on.b-race_australia .b-race__pic:before {
+	padding-top:50%;
+}
+.b-race_on.b-race_malaysia .b-race__pic {
+	background-image:url('../../data/img/flags/malaysia.png');
+}
+.b-race_on.b-race_malaysia .b-race__pic:before {
+	padding-top:50%;
+}
+.b-race_on.b-race_china .b-race__pic {
+	background-image:url('../../data/img/flags/china.png');
+}
+.b-race_on.b-race_bahrain .b-race__pic {
+	background-image:url('../../data/img/flags/bahrain.png');
+}
+.b-race_on.b-race_bahrain .b-race__pic:before {
+	padding-top:60%;
+}
+.b-race_on.b-race_barcelona .b-race__pic {
+	background-image:url('../../data/img/flags/spain.png');
+}
+.b-race_on.b-race_monaco .b-race__pic {
+	background-image:url('../../data/img/flags/monaco.png');
+}
+.b-race_on.b-race_monaco .b-race__pic:before {
+	padding-top:80%;
+}
+.b-race_on.b-race_canada .b-race__pic {
+	background-image:url('../../data/img/flags/canada.png');
+}
+.b-race_on.b-race_canada .b-race__pic:before {
+	padding-top:50%;
 }

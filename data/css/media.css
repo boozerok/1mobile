@@ -5,6 +5,38 @@
 	.b-nav__pin {
 		font-size:1em; /* 12px */
 	}
+	.b-race {
+		padding:2.5% 2.5%;
+	}
+	.b-race__pic {
+		width:25.6px; /* 80% */
+		height:20px;
+		background-size:cover;
+	}
+	.b-race_australia .b-race__pic {
+		background-position:0 -51.2px;
+	}
+	.b-race_malaysia .b-race__pic {
+		background-position:0 -486.4px;
+	}
+	.b-race_china .b-race__pic {
+		background-position:0 -179.2px;
+	}
+	.b-race_bahrain .b-race__pic {
+		background-position:0 -102.4px;
+	}
+	.b-race_barcelona .b-race__pic {
+		background-position:0 -230.4px;
+	}
+	.b-race_monaco .b-race__pic {
+		background-position:0 -332.8px;
+	}
+	.b-race_canada .b-race__pic {
+		background-position:0 -153.6px;
+	}
+	.b-race_on .b-race__pic {
+		box-shadow:0 1px 5px rgba(0,0,0,.5);
+	}
 }
 
 

@@ -14,7 +14,6 @@
 	<![endif]-->
 </head>
 <body>
-
 <div class="p-wrap">
 	<div class="p-head">
 		<nav class="b-nav js-menu" data-class-enabled="b-nav__pin_on">
@@ -25,12 +24,10 @@
 	</div>
 	<div class="p-tape">
 		<div class="p-races js-content js-races" id="races">
-			<div class="b-race b-race_{{race_alias}} b-race_off b-clear js-race" data-template="data-template" data-class-disabled="b-race_off">
+			<div class="b-race b-race_{{race_alias}} b-clear js-race" data-template="data-template" data-class-enabled="b-race_on">
 				<a href="#{{race_id}}" class="b-race__link">
-					<span class="b-race__pic js-race-flag">
-						<img src="" alt="{{race_name}}" data-src="data/content/pic/flag/{{race_country}}_th.png">
-					</span>
-					<strong class="b-race__title">{{race_name}}</strong>
+					<i class="b-race__pic"></i>
+					<span class="b-race__title">{{race_name}}</span>
 				</a>
 				<div class="b-race__dates js-race-date" data-date="{{race_timetable.race}}">{{race_timetable.race | date 'D MMMM, HH:mm'}}</div>
 				<div class="b-race__countdown js-race-at">
