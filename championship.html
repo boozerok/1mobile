@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="x-ua-compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>1mobile</title>
+	<link rel="stylesheet" media="all" href="data/css/all.css">
+	<link rel="stylesheet" media="all" href="data/css/media.css">
+	<script src="data/js/jquery-1.8.2.min.js"></script>
+	<script src="data/js/tempo.min.js"></script>
+	<script src="data/content/json/races.js"></script>
+	<!--[if lt IE 9]>
+		<script src="data/js/html5.js"></script>
+	<![endif]-->
+</head>
+<body>
+
+<div class="p-wrap">
+	<div class="p-head">
+		<nav class="b-nav">
+			<a href="#" class="b-nav__pin">Races</a>
+			<a href="#" class="b-nav__pin">Championship</a>
+			<a href="#" class="b-nav__pin">Activity</a>
+		</nav>
+	</div>
+	<div class="p-tape">
+		<div class="p-races js-content js-races" id="races">
+			<div class="b-race b-race_{{race_alias}} b-race_off b-clear js-race" data-template="data-template" data-class-disabled="b-race_off">
+				<a href="#{{race_id}}" class="b-race__link">
+					<span class="b-race__pic js-race-flag">
+						<img src="" alt="{{race_name}}" data-src="data/content/pic/flag/{{race_country}}_th.png">
+					</span>
+					<strong class="b-race__title">{{race_name}}</strong>
+				</a>
+				<div class="b-race__dates js-race-date" data-date="{{race_timetable.race}}">{{race_timetable.race | date 'D MMMM, HH:mm'}}</div>
+				<div class="b-race__countdown js-race-at">
+					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-days">9</span>days</span>
+					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-hours">15</span>hrs</span>
+					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-mins">35</span>min</span>
+					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-secs">35</span>sec</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="p-foot">
+		&copy;&nbsp;<span class="js-foot-copy">2012</span>
+	</div>
+</div>
+
+<script>
+Tempo.prepare('races').render(racesData.races);
+(function ($) {
+	var jRaces = $('.js-races'),
+		dateNow = new Date();
+
+	var fCountdown = function(isoDate, box) {
+		var isoDate = isoDate,
+			dateEnd = new Date(isoDate),
+			dateNow = new Date(),
+			timeDiff = dateEnd.getTime() - dateNow.getTime();
+
+		if (timeDiff <= 0) {
+			clearTimeout(timer);
+			return false;
+			// Run any code needed for countdown completion here
+		}
+
+		var seconds = Math.floor(timeDiff / 1000),
+			minutes = Math.floor(seconds / 60),
+			hours = Math.floor(minutes / 60),
+			days = Math.floor(hours / 24);
+
+		hours %= 24;
+		minutes %= 60;
+		seconds %= 60;
+
+		$('.js-race-at-days', box).text(days);
+		$('.js-race-at-hours', box).text(hours);
+		$('.js-race-at-mins', box).text(minutes);
+		$('.js-race-at-secs', box).text(seconds);
+
+		var timer = setTimeout(function(){
+			fCountdown(isoDate, box);
+		}, 1000);
+	};
+
+	var fGetNearest = function(jRace) {
+		var jThis;
+		jRace.each(function(){
+			var sDate = $(this).find('.js-race-date').data('date');
+			sDate = new Date(sDate);
+			if (dateNow < sDate) {
+				jThis = $(this);
+				return false;
+			}
+		});
+		if (jThis) {
+			return jThis;
+		}
+	}
+
+	var fShowNearest = function() {
+		var jRace = jRaces.find('.js-race'),
+			jRaceNear = fGetNearest(jRace),
+			jRaceFlag = jRaceNear.find('.js-race-flag img'),
+			sRaceFlag = jRaceFlag.attr('src').replace('_th.', '.'),
+			sRaceDate = jRaceNear.find('.js-race-date').data('date'),
+			jRaceCount = jRaceNear.find('.js-race-at'),
+			sToggleClass = jRaceNear.data('class-disabled');
+
+		jRaceFlag.attr('src', sRaceFlag);
+		jRaceNear.removeClass(sToggleClass);
+
+		fCountdown(sRaceDate, jRaceCount);
+	};
+
+	var fCountCurrYear = function() {
+		var jCopyYear = $('.js-foot-copy'),
+			sCopyYear = $('.js-foot-copy').text(),
+			sCurrYear = dateNow.getFullYear();
+		jCopyYear.text(sCopyYear + '-' + sCurrYear);
+	}
+
+	//init
+	fShowNearest();
+	fCountCurrYear();
+
+})(jQuery);
+
+
+</script>
+
+</body>
+</html>

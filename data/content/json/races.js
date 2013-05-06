@@ -1,4 +1,4 @@
-var racesData = {
+var aRaces = {
 	"races" : [
 
 		{
@@ -212,6 +212,44 @@ var racesData = {
 				"curcuit_length" 	: "3.340"
 			},
 			"race_distance" 	: "260.520",
+			"race_pics" : [
+				{
+					"src" 	: "http://kereta.info/wp-content/uploads/2009/03/f1-malaysia-22.jpg",
+					"copy" 	: "http://kereta.info/watch-jamiroquai-concert-at-the-petronas-malaysian-grandprix-2009-with-only-the-f1-ticket/"
+				},
+				{
+					"src" 	: "http://www.f1fanatic.co.uk/wp-content/uploads/2010/04/malaysian_gp_start_sepa_2010-5.jpg",
+					"copy" 	: ""
+				},
+				{
+					"src" 	: "http://mrdefinite.com/wp-content/uploads/2011/04/petronas-malaysia-grand-prix-motorsports-F1-models.jpg",
+					"copy" 	: "http://im.mrdefinite.com/mr-definite-as-petronas-f1-driver/",
+					"text" 	: "Модели на ГП Малайзии"
+				}
+			],
+			"social" : {
+				"twitter" 		: "",
+				"instagram" 	: ""
+			}
+		},
+		{
+			"race_id"			: "7",
+			"race_alias" 		: "canada",
+			"race_name" 		: "Grand Prix Du Canada",
+			"race_country" 		: "canada",
+			"race_timetable" 	: {
+				"practice_1" 	: "2013-06-07T10:00:00",
+				"practice_2" 	: "2013-06-07T14:00:00",
+				"practice_3" 	: "2013-06-08T10:00:00",
+				"qualifying" 	: "2013-06-09T13:00:00",
+				"race" 			: "2013-06-10T14:00:00"
+			},
+			"race_circuit" 			: {
+				"curcuit_name" 		: "Circuit du Gilles Villeneuve",
+				"curcuit_laps" 		: "70",
+				"curcuit_length" 	: "4.361"
+			},
+			"race_distance" 	: "305.270",
 			"race_pics" : [
 				{
 					"src" 	: "http://kereta.info/wp-content/uploads/2009/03/f1-malaysia-22.jpg",
