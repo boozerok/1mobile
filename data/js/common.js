@@ -39,23 +39,22 @@
 
 	var fGetNearest = function(jRace) {
 		var jThis;
-		jRace.each(function(){
-			var sDate = $(this).find('.js-race-date').data('date');
-			sDate = new Date(sDate);
+		for(var i = 0; i < jRace.length; i++) {
+			var jThis = jRace.eq(i),
+				sDate = jThis.find('.js-race-date').data('date'),
+				sDate = new Date(sDate);
 			if (dateNow < sDate) {
-				jThis = $(this);
-				return false;
+				return jThis;
 			}
-		});
-		if (jThis) {
-			return jThis;
 		}
 	}
 
 	var fShowNearest = function() {
-		var jRace = $('.js-race'),
-			jRaceNear = fGetNearest(jRace),
-			sRaceDate = jRaceNear.find('.js-race-date').data('date'),
+		var jRaceNear = fGetNearest($('.js-race'));
+		if (!jRaceNear) {
+			return false;
+		}
+		var sRaceDate = jRaceNear.find('.js-race-date').data('date'),
 			jRaceCount = jRaceNear.find('.js-race-at'),
 			sToggleClass = jRaceNear.data('class-enabled');
 
@@ -69,22 +68,67 @@
 			sCopyYear = $('.js-foot-copy').text(),
 			sCurrYear = dateNow.getFullYear();
 		jCopyYear.text(sCopyYear + '-' + sCurrYear);
-	}
+	};
+
+	var getRaces = $.getJSON('data/content/json/races.json');
 
 	var fShowRaces = function() {
-		$.getJSON('data/content/json/races.json', function(data) {
+		getRaces.done(function(data) {
 			jContentTempo.render(data.races);
 			fShowNearest();
+			fShowRace(data.races);
 		});
 	};
+
+	var fGetRace = function(races, alias) {
+		for (var i = 0; i < races.length; i++) {
+			var race = races[i],
+				raceAlias = races[i].race_alias;
+			if ( alias == raceAlias ) {
+				return races[i];
+			}
+		}
+	};
+
+	var fShowRace = function(races) {
+		$('.js-race').on('click', function(e){
+			e.preventDefault();
+			var jThis = $(this),
+				sThisAlias = jThis.data('race'),
+				sEnabledClass = jThis.data('class-enabled'),
+				sActiveClass = jThis.data('class-active'),
+				aRace = fGetRace(races, sThisAlias);
+
+			//jContentTempo.render(aRace);
+			$('.js-race').removeClass(sEnabledClass).removeClass(sActiveClass);
+			jThis.addClass(sEnabledClass).addClass(sActiveClass);
+
+			history.pushState({race: 'au'}, 'Title', '/race.html');
+
+
+			console.log( jThis.data('class-active') );
+
+		});
+	};
+
+	var fShowChampionship = function() {
+		console.log('champ');
+	}
+
+	var fShowActivity = function() {
+		console.log('activity');
+	}
 
 	jMenuPin.bind('click', function(e, sContent){
 		e.preventDefault();
 		var jThis = $(this);
 		if (!sContent) {
 			var sContent = jThis.data('content');
+		} else {
+			if (jThis.data('content') != sContent) {
+				return false;
+			}
 		}
-		console.log(sContent)
 		switch (sContent) {
 			case 'races':
 				fShowRaces();
@@ -98,9 +142,12 @@
 		};
 		jMenuPin.removeClass(sMenuPinOn);
 		jThis.addClass(sMenuPinOn);
-	}).trigger('click', ['races']);
+	});
+
+
 
 	//init
+	jMenuPin.trigger('click', ['races'])
 	fCountCurrYear();
 
 })(jQuery);

@@ -17,9 +17,14 @@
 	text-align:center;
 	-moz-box-sizing:border-box;
 	padding:0 10px;
-	background:#e5e5e5; /* Old browsers */
-	background:-webkit-linear-gradient(top,  #e5e5e5 0%,#cdcdcd 100%); /* Chrome10+,Safari5.1+ */
-	background:linear-gradient(to bottom,  #e5e5e5 0%,#cdcdcd 100%); /* W3C */
+	background:#e5e5e5;
+	background:-moz-linear-gradient(top,  #e5e5e5 0%, #cdcdcd 100%);
+	background:-webkit-gradient(linear, left top, left bottom, color-stop(0%,#e5e5e5), color-stop(100%,#cdcdcd));
+	background:-webkit-linear-gradient(top,  #e5e5e5 0%,#cdcdcd 100%);
+	background:-o-linear-gradient(top,  #e5e5e5 0%,#cdcdcd 100%);
+	background:-ms-linear-gradient(top,  #e5e5e5 0%,#cdcdcd 100%);
+	background:linear-gradient(to bottom,  #e5e5e5 0%,#cdcdcd 100%);
+	filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#e5e5e5', endColorstr='#cdcdcd',GradientType=0 );
 	color:#444;
 }
 .b-nav__pin:after {
@@ -42,9 +47,14 @@
 .b-nav__pin:hover,
 .b-nav__pin:active {
 	z-index:4;
-	background:#ededed; /* Old browsers */
-	background:-webkit-linear-gradient(top,  #fff 0%,#dadada 100%); /* Chrome10+,Safari5.1+ */
-	background:linear-gradient(to bottom,  #fff 0%,#dadada 100%); /* W3C */
+	background: #ffffff;
+	background: -moz-linear-gradient(top,  #ffffff 0%, #dadada 100%);
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#ffffff), color-stop(100%,#dadada));
+	background: -webkit-linear-gradient(top,  #ffffff 0%,#dadada 100%);
+	background: -o-linear-gradient(top,  #ffffff 0%,#dadada 100%);
+	background: -ms-linear-gradient(top,  #ffffff 0%,#dadada 100%);
+	background: linear-gradient(to bottom,  #ffffff 0%,#dadada 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ffffff', endColorstr='#dadada',GradientType=0 );
 }
 .b-nav__pin_on {
 	cursor:default;
@@ -53,26 +63,31 @@
 /*==========================================
 -b-race-------------------------------------
 ============================================*/
+.p-races {
+	overflow:auto;
+}
 .b-race {
+	line-height:2.08333333333em;
 	overflow:hidden;
 	position:relative;
 	padding:1.2% 1.5%;
-	white-space:nowrap;
+	cursor:pointer;
 	text-overflow:ellipsis;
+	white-space:nowrap;
 	border-bottom:1px solid #ddd;
-	background:#fff;
+	background:#f8f8f8;
+	-webkit-transition:background .4s, padding .5s;
+	-moz-transition:background .4s, padding .5s;
+	transition:background .4s, padding .5s;
 }
 .b-race:last-child {
 	border-bottom:0;
 }
 .b-race__link {
 	float:left;
-	max-width:72%;
+	max-width:66%;
 	overflow:hidden;
 	text-overflow:ellipsis;
-}
-.b-race__link:hover {
-	text-decoration:none;
 }
 .b-race__pic {
 	display:inline-block;
@@ -83,23 +98,19 @@
 	background:url('../../data/img/flags/sprite-flags-32.png') no-repeat 0 0;
 }
 .b-race__title {
-	font-size:1em;
+	font-size:1.08333333333em; /* 13px */
 	color:#999;
-}
-.b-race__link:hover .b-race__title,
-.b-race__link:active .b-race__title {
-	text-decoration:underline;
-	color:#444;
+	-webkit-transition:color .4s;
+	-moz-transition:color .4s;
+	transition:color .4s;
 }
 .b-race__dates {
-	font-size:0.9166666666666667em; /* 11px */
 	float:right;
 	color:#999;
 }
 .b-race__countdown {
 	display:none;
 	overflow:hidden;
-	margin-top:1.25%;
 }
 .b-race__countdown__item {
 	font-size:0.9166666666666667em; /* 11px */
@@ -134,10 +145,25 @@
 .b-race_canada .b-race__pic {
 	background-position:0 -192px;
 }
+.b-race_great-britain .b-race__pic {
+	background-position:0 -352px;
+}
 
 .b-race_on {
+	line-height:1.3em;
 	padding-top:1.5%;
 	padding-bottom:1.5%;
+	background:#fff;
+}
+.b-race_on:before {
+	display:block;
+	position:absolute;
+	top:-20px;
+	left:0;
+	width:100%;
+	height:20px;
+	box-shadow:0 0 8px rgba(0,0,0,.4);
+	content:'';
 }
 .b-race_on .b-race__link {
 	display:inline;
@@ -153,7 +179,7 @@
 	box-shadow:0 2px 10px rgba(0,0,0,.5);
 	background-color:rgba(0,0,0,.3);
 	background-position:0 0!important;
-	background-size:100%!important;
+	background-size:100%;
 }
 .b-race_on .b-race__pic:before {
 	display:block;
@@ -161,13 +187,17 @@
 	content:'';
 }
 .b-race_on .b-race__title {
-	font-weight:bold;
-	font-size:1.166666666666667em;
+	font-size:1.38461538462em; /* 18px */
+	display:block;
+	overflow:hidden;
+	margin-top:1px;
+	text-overflow:ellipsis;
 	text-transform:uppercase;
 	color:#444;
 }
 .b-race_on .b-race__dates {
 	float:none;
+	margin:3px 0 1%;
 }
 .b-race_on .b-race__countdown {
 	display:block;
@@ -208,4 +238,70 @@
 }
 .b-race_on.b-race_canada .b-race__pic:before {
 	padding-top:50%;
+}
+
+.b-race:hover {
+	background:#eee;
+}
+.b-race:hover .b-race__title,
+.b-race:active .b-race__title {
+	text-decoration:underline;
+	color:#444;
+}
+
+
+.b-race__info {
+	display:none;
+}
+.b-race__circuit {
+	margin:1.1% 0;
+}
+.b-race__circuit__title {
+	font-size:1.333em;
+	line-height:1.667em;
+}
+.b-race__circuit__info__item {
+	line-height:1.5em;
+	overflow:hidden;
+	position:relative;
+}
+.b-race__circuit__info__item:before {
+	display:block;
+	position:absolute;
+	width:100%;
+	top:0;
+	content:'.......................................................';
+}
+.b-race__circuit__info__item__title {
+	float:left;
+	position:relative;
+	z-index:3;
+	padding-right:3px;
+	background:#fff;
+}
+.b-race__circuit__info__item__data {
+	position:relative;
+	z-index:3;
+	margin-left:100px;
+	padding-left:3px;
+	background:#fff;
+}
+
+
+.b-race_on-active {
+	cursor:default;
+	background:#fff!important;
+}
+.b-race_on-active:before {
+	display:none;
+}
+.b-race_on-active .b-race__pic {
+	margin-bottom:1.3%;
+}
+.b-race_on-active .b-race__title {
+	text-decoration:none!important;
+	color:#444;
+}
+.b-race_on-active .b-race__info {
+	display:block;
 }

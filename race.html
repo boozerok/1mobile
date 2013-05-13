@@ -23,20 +23,20 @@
 		</nav>
 	</div>
 	<div class="p-tape">
-		<div class="js-content js-races">
-			<div class="b-race b-race_{{race_alias}} js-race" data-template data-class-enabled="b-race_on" data-class-active="b-race_on-active" data-id="{{race_id}}" data-race="{{race_alias}}">
-				<a href="#{{race_id}}" class="b-race__link">
+		<div class="js-contentx js-races">
+			<div class="b-race b-race_on b-race_on-active b-race_australia js-race" data-template>
+				<div class="b-race__link">
 					<i class="b-race__pic"></i>
 					<span class="b-race__title">{{race_name}}</span>
-				</a>
+				</div>
 				<div class="b-race__dates js-race-date" data-date="{{race_timetable.race}}">{{race_timetable.race | date 'D MMMM, HH:mm'}}</div>
-				<div class="b-race__countdown js-race-at">
+				<div class="i-none b-race__countdown js-race-at">
 					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-days">9</span>days</span>
 					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-hours">15</span>hrs</span>
 					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-mins">35</span>min</span>
 					<span class="b-race__countdown__item"><span class="b-race__countdown__num js-race-at-secs">35</span>sec</span>
 				</div>
-				<div class="b-race__info">
+				<div class="b-race_info">
 					<div class="b-race__circuit">
 						<div class="b-race__circuit__title">{{race_circuit.circuit_name}}</div>
 						<div class="b-race__circuit__info">

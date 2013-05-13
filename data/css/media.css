@@ -1,4 +1,4 @@
-@media screen and (max-width:420px) {
+@media screen and (max-width:510px) {
 	.b-nav {
 		margin:0;
 	}
@@ -8,40 +8,15 @@
 	.b-race {
 		padding:2.5% 2.5%;
 	}
-	.b-race__pic {
-		width:25.6px; /* 80% */
-		height:20px;
-		background-size:cover;
-	}
-	.b-race_australia .b-race__pic {
-		background-position:0 -51.2px;
-	}
-	.b-race_malaysia .b-race__pic {
-		background-position:0 -486.4px;
-	}
-	.b-race_china .b-race__pic {
-		background-position:0 -179.2px;
-	}
-	.b-race_bahrain .b-race__pic {
-		background-position:0 -102.4px;
-	}
-	.b-race_barcelona .b-race__pic {
-		background-position:0 -230.4px;
-	}
-	.b-race_monaco .b-race__pic {
-		background-position:0 -332.8px;
-	}
-	.b-race_canada .b-race__pic {
-		background-position:0 -153.6px;
-	}
-	.b-race_on .b-race__pic {
-		box-shadow:0 1px 5px rgba(0,0,0,.5);
+	.b-race__circuit {
+		clear:left;
 	}
 }
 
+@media screen and (max-width:950px) {
 
-@media screen and (max-width:1280px) {
-	.p-wrap {
-		/* padding:0 2%; */
+	.b-race__circuit {
+		clear:left;
 	}
+
 }
