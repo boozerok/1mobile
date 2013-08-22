@@ -10,7 +10,9 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>1mobile</title>
 	<link rel="stylesheet" media="all" href="data/css/main.css">
-	<script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="data/js/tempo.min.js"></script>
+	<script src="data/js/common.js"></script>
 	<!--[if lt IE 9]>
 		<<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 	<![endif]-->
@@ -33,10 +35,10 @@
 		<span class="tab__item">Top tracks</span>
 		<span class="tab__item">Top artists</span>
 	</div>
-	<div class="tape">
-		<div class="tape__item">
-			<div class="tape__item__title"></div>
-			<div class="tape__item__note"></div>
+	<div class="tape" id="tape">
+		<div class="tape__item" data-template>
+			<div class="tape__item__title">{{ name }}</div>
+			<div class="tape__item__note">{{ artist.name }}</div>
 			<div class="tape__item__side"></div>
 		</div>
 	</div>
