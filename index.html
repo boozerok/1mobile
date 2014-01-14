@@ -19,6 +19,7 @@
 			<div class="when__note">
 				<a href="https://instagram.com/oauth/authorize/?client_id=b58b21781e194ba6af6a50a8e8876c2b&redirect_uri=http://boozerok.github.io/1mobile/&response_type=token">Хочу воспользоваться</a>
 			</div>
+			<span class="js-get-user">Получить</span>
 			<div class="dive"></div>
 		</div>
 	</div>
@@ -54,8 +55,8 @@ var getMedia = function() {
 }
 
 $(function(){
-	getToken();
-	getMedia();
+	$('.js-get-user').click(getMedia)
+	//getMedia();
 })
 </script>
 
