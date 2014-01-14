@@ -41,14 +41,14 @@ var getMedia = function() {
 	$.ajax({
 		type: 'GET',
 		url: getUrl,
-		dataType: 'jsonp',
+		dataType: 'json',
 		timeout: 1000,
 		context: $('.dive'),
 		success: function(data){
-			console.log(data)
+			console.log('good')
 		},
 		error: function(xhr, type){
-			alert('Ajax error!')
+			console.log('bad')
 		}
 	});
 }
