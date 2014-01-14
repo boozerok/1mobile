@@ -44,10 +44,10 @@ var getMedia = function() {
 		dataType: 'jsonp',
 		timeout: 1000,
 		success: function(data){
-			console.log('good')
+			console.log(data)
 		},
 		error: function(xhr, type){
-			console.log('bad')
+			console.log(xhr, type)
 		}
 	});
 }
