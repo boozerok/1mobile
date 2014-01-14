@@ -45,7 +45,7 @@ var getMedia = function() {
 		timeout: 1000,
 		context: $('.dive'),
 		success: function(data){
-			this.append(data.project.html)
+			console.log(data)
 		},
 		error: function(xhr, type){
 			alert('Ajax error!')
