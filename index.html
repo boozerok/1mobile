@@ -29,11 +29,10 @@
 var getToken = function() {
 	var hash = window.location.hash;
 	if (hash.indexOf('access_token') != -1) {
-		var token = window.location.hash;
+		var token = window.location.hash.split('#')[1];
 		localStorage.setItem('token', token)
 	}
 	return localStorage.token;
-	//console.log(localStorage.token);
 }
 
 var getMedia = function() {
