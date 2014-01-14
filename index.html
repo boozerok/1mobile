@@ -41,7 +41,7 @@ var getMedia = function() {
 	$.ajax({
 		type: 'GET',
 		url: getUrl,
-		dataType: 'json',
+		dataType: 'jsonp',
 		timeout: 1000,
 		context: $('.dive'),
 		success: function(data){
