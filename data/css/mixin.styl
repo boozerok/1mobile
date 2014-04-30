@@ -1,0 +1,14 @@
+border-box()
+	-moz-box-sizing: border-box
+	box-sizing: border-box
+
+border-radius(arguments)
+	-webkit-border-radius: arguments
+	-moz-border-radius: arguments
+	border-radius: arguments
+
+support-for-ie ?= true
+opacity(n)
+	opacity: n
+	if support-for-ie
+		filter: 'alpha(opacity=' + round(n * 100) + ')'

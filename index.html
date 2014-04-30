@@ -1,66 +1,71 @@
 <!DOCTYPE html>
-<html>
+<html lang="en-EN">
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="x-ua-compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<title>1mobile</title>
-	<link rel="stylesheet" href="http://deti.mail.ru/css/include-reset.css">
+	<script src="http://zeptojs.com/zepto.min.js"></script>
+	<script>var instagramToken = window.location.hash.split('access_token=')[1]</script>
 </head>
 <body>
 
 <div class="tape">
-	<div id="1" class="when when_type-1">
-		<div class="when__in">
-			<div class="when__title">
-				Один
-			</div>
-			<div class="when__note">
-				Пояснение к первому
-			</div>
-		</div>
-	</div>
-
-	<div id="2" class="when when_type-2">
-		<div class="when__in">
-			<div class="when__title">
-				Два
-			</div>
-			<div class="when__note">
-				Пояснение ко второму
-			</div>
-		</div>
-	</div>
-
-	<div id="3" class="when when_type-3">
-		<div class="when__in">
-			<div class="when__title">
-				Три
-			</div>
-			<div class="when__note">
-				Пояснение к третьему
-			</div>
-		</div>
-	</div>
-
 	<div id="4" class="when when_type-4">
 		<div class="when__in">
 			<div class="when__title">
 				Четыре
 			</div>
 			<div class="when__note">
-				Пояснение к четвертому
+				<a href="https://instagram.com/oauth/authorize/?client_id=b58b21781e194ba6af6a50a8e8876c2b&redirect_uri=http://boozerok.github.io/1mobile/&response_type=token">Хочу воспользоваться</a>
 			</div>
+			<span class="js-get-user">Получить</span>
+			<div class="dive"></div>
 		</div>
 	</div>
 </div>
 
+<script>
+var getToken = function() {
+	var hash = window.location.hash;
+	if (hash.indexOf('access_token') != -1) {
+		var token = window.location.hash.split('#')[1];
+		localStorage.setItem('token', token)
+	}
+	return localStorage.token;
+}
+
+var getMedia = function() {
+	var token = getToken();
+	var getUrl = 'https://api.instagram.com/v1/users/1574083/?' + token;
+	$.ajax({
+		type: 'GET',
+		url: getUrl,
+		dataType: 'jsonp',
+		timeout: 1000,
+		success: function(data){
+			console.log(data)
+		},
+		error: function(xhr, type){
+			console.log(xhr, type)
+		}
+	});
+}
+
+$(function(){
+	$('.js-get-user').click(getMedia);
+})
+</script>
 
 <style>
 html,body,.tape,.when {
+	font: 12px Arial,Helvetica,sans-serif;
 	overflow:hidden;
+	position: relative;
 	width:100%;
 	height:100%;
+	margin: 0;
+	padding: 0;
 }
 .when {
 	display:none;
